@@ -19,7 +19,7 @@ def sendmail(subject, msg, toaddrs, fromaddr, smtpaddr, password):
     mail_msg['To'] = ','.join(toaddrs)
     mail_msg.attach(MIMEText(msg, 'html', 'utf-8'))
     try:
-        s = smtplib.SMTP_SSL()
+        s = smtplib.SMTP_SSL(smtpaddr)
         s.connect(smtpaddr, 465)  # 连接smtp服务器
         s.login(fromaddr, password)  # 登录邮箱
         s.sendmail(fromaddr, toaddrs, mail_msg.as_string())  # 发送邮件
